@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Layout, Row, Typography } from "antd";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
 
 const App = ({ children }) => {
