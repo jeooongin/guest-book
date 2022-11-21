@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import App from "../components/App";
 
 const _app = ({ Component }) => {
   return (
@@ -7,7 +8,9 @@ const _app = ({ Component }) => {
       <Head>
         <title>방명록</title>
       </Head>
-      <Component />
+      <App>
+        <Component />
+      </App>
     </>
   );
 };
