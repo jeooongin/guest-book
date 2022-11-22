@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import shortid from "shortid";
 
 /* api 역할을 담당할 sleep 함수 구현
 나중에 비동기 액션의 sleep 함수를 api를 받아오도록 변경 */
@@ -9,6 +10,13 @@ function sleep(ms, data = null) {
     }, ms)
   );
 }
+
+const dummyGuestBook = (data) => ({
+  id: shortid.generate(),
+  content: data.content,
+  name: data.name,
+  password: data.password,
+});
 
 // initialState
 const initialState = {
@@ -21,9 +29,9 @@ const initialState = {
 // 비동기 액션
 export const addGuestBook = createAsyncThunk(
   "guestbook/addguestbook",
-  async (thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      const response = await sleep(1000);
+      const response = await dummyGuestBook(data);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -43,11 +51,11 @@ const guestBookSlice = createSlice({
         state.addGuestBookDone = false;
         state.addGuestBookError = null;
       })
-      .addCase(addGuestBook.fulfilled, (state) => {
+      .addCase(addGuestBook.fulfilled, (state, action) => {
         state.addGuestBookLoading = false;
         state.addGuestBookDone = true;
         state.addGuestBookError = null;
-        state.guestBooks = state.guestBooks.concat();
+        state.guestBooks = state.guestBooks.concat(action.payload);
       })
       .addCase(addGuestBook.rejected, (state, action) => {
         state.addGuestBookLoading = false;
