@@ -9,6 +9,10 @@ reducer를 활용해 addGuestBook이 성공할 시 폼에서 전송한 데이터
 폼에서 데이터 전송 후 useEffect를 사용해 입력값 전부 초기화
 
 ### 입력값 폼
+![스크린샷 2022-11-22 오후 1 21 37](https://user-images.githubusercontent.com/73627446/203224644-9bd77dfa-4832-4f1f-9dca-746dd4bd837e.png)
+
+
+### 폼 작성
 ![스크린샷 2022-11-22 오전 10 14 52](https://user-images.githubusercontent.com/73627446/203190556-2bbfb296-ab05-471e-a52a-370ba16fda31.png)
 
 ### 폼 전송 후 방명록 등록
