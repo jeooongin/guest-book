@@ -11,19 +11,27 @@ function sleep(ms, data = null) {
   );
 }
 
-const dummyGuestBook = (data) => ({
-  id: shortid.generate(),
-  content: data.content,
-  name: data.name,
-  password: data.password,
-});
-
 // initialState
 const initialState = {
   guestBooks: [],
   addGuestBookLoading: false,
   addGuestBookDone: false,
   addGuestBookError: null,
+  deleteGuestBookLoading: false,
+  deleteGuestBookDone: false,
+  deleteGuestBookError: null,
+};
+
+// API
+const addGuestBookAPI = (data) => ({
+  id: shortid.generate(),
+  content: data.content,
+  name: data.name,
+  password: data.password,
+});
+
+const deleteGuestBookAPI = (data) => {
+  return data.password;
 };
 
 // 비동기 액션
@@ -31,7 +39,19 @@ export const addGuestBook = createAsyncThunk(
   "guestbook/addguestbook",
   async (data, thunkAPI) => {
     try {
-      const response = await dummyGuestBook(data);
+      const response = await addGuestBookAPI(data);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteGuestBook = createAsyncThunk(
+  "guestbook/deleteguestbook",
+  async (data, thunkAPI) => {
+    try {
+      const response = await deleteGuestBookAPI(data);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -61,6 +81,24 @@ const guestBookSlice = createSlice({
         state.addGuestBookLoading = false;
         state.addGuestBookDone = false;
         state.addGuestBookError = action.payload;
+      })
+      .addCase(deleteGuestBook.pending, (state) => {
+        state.deleteGuestBookLoading = true;
+        state.deleteGuestBookDone = false;
+        state.deleteGuestBookError = null;
+      })
+      .addCase(deleteGuestBook.fulfilled, (state, action) => {
+        state.deleteGuestBookLoading = false;
+        state.deleteGuestBookDone = true;
+        state.deleteGuestBookError = null;
+        state.guestBooks = state.guestBooks.filter(
+          (v) => v.password !== action.payload
+        );
+      })
+      .addCase(deleteGuestBook.rejected, (state, action) => {
+        state.deleteGuestBookLoading = false;
+        state.deleteGuestBookDone = false;
+        state.deleteGuestBookError = action.payload;
       }),
 });
 
