@@ -75,7 +75,7 @@ const guestBookSlice = createSlice({
         state.addGuestBookLoading = false;
         state.addGuestBookDone = true;
         state.addGuestBookError = null;
-        state.guestBooks = state.guestBooks.concat(action.payload);
+        state.guestBooks.unshift(action.payload);
       })
       .addCase(addGuestBook.rejected, (state, action) => {
         state.addGuestBookLoading = false;
