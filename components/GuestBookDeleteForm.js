@@ -1,14 +1,21 @@
 import { Button, Form, Input } from "antd";
-import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import useInput from "../hooks/useInput";
 import { deleteGuestBook } from "../reducers/guestBook";
 
 const GuestBookDeleteForm = () => {
-  const [password, setPassword] = useInput("");
+  const [password, onChangePassword, setPassword] = useInput("");
 
   const dispatch = useDispatch();
+  const { deleteGuestBookDone } = useSelector((state) => state.guestBook);
+
+  useEffect(() => {
+    if (deleteGuestBookDone) {
+      setPassword("");
+    }
+  }, [deleteGuestBookDone]);
 
   const onSubmitForm = useCallback(() => {
     dispatch(deleteGuestBook({ password }));
@@ -20,7 +27,7 @@ const GuestBookDeleteForm = () => {
         <Input
           name="password"
           value={password}
-          onChange={setPassword}
+          onChange={onChangePassword}
           type="password"
           required
         />
