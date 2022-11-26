@@ -1,11 +1,16 @@
 import { Button, Card, Popover } from "antd";
 import React from "react";
+import styled from "styled-components";
 
 import GuestBookDeleteForm from "./GuestBookDeleteForm";
 
+const CardWrapper = styled(Card)`
+  margin-top: 10px;
+`;
+
 const GuestBookCard = ({ guestBook }) => {
   return (
-    <Card
+    <CardWrapper
       title={guestBook.name}
       extra={
         <Popover
@@ -16,10 +21,9 @@ const GuestBookCard = ({ guestBook }) => {
           <Button>삭제</Button>
         </Popover>
       }
-      style={{ marginTop: "10px" }}
     >
       {guestBook.content}
-    </Card>
+    </CardWrapper>
   );
 };
 

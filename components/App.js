@@ -1,29 +1,49 @@
 import React from "react";
 import { Col, Layout, Row, Typography } from "antd";
+import styled from "styled-components";
 
 const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
 
+const HeaderWrapper = styled(Header)`
+  display: flex;
+  align-items: center;
+`;
+
+const TitleWrapper = styled(Title)`
+  &.ant-typography {
+    color: white;
+  }
+  margin-top: 10px;
+`;
+
+const ContentWrapper = styled(Content)`
+  margin: 10px;
+`;
+
+const FooterWrapper = styled(Footer)`
+  display: flex;
+  justify-content: center;
+`;
+
 const App = ({ children }) => {
   return (
     <Layout>
-      <Header style={{ display: "flex", alignItems: "center" }}>
-        <Title level={3} style={{ color: "white", marginTop: "10px" }}>
-          방명록
-        </Title>
-      </Header>
-      <Content style={{ margin: "10px" }}>
+      <HeaderWrapper>
+        <TitleWrapper level={3}>방명록</TitleWrapper>
+      </HeaderWrapper>
+      <ContentWrapper>
         <Row>
           <Col xs={24} md={6}></Col>
           <Col xs={24} md={12}>
             {children}
           </Col>
-          <Col xs={24} md={6} å></Col>
+          <Col xs={24} md={6}></Col>
         </Row>
-      </Content>
-      <Footer style={{ display: "flex", justifyContent: "center" }}>
+      </ContentWrapper>
+      <FooterWrapper>
         Copyright 2022. JeongIn All rights reserved.
-      </Footer>
+      </FooterWrapper>
     </Layout>
   );
 };

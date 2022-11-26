@@ -1,9 +1,14 @@
 import { Button, Form, Input } from "antd";
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 
 import useInput from "../hooks/useInput";
 import { deleteGuestBook } from "../reducers/guestBook";
+
+const ButtonWrapper = styled(Button)`
+  margin-top: 10px;
+`;
 
 const GuestBookDeleteForm = () => {
   const [password, onChangePassword, setPassword] = useInput("");
@@ -33,9 +38,9 @@ const GuestBookDeleteForm = () => {
         />
       </div>
       <div>
-        <Button type="primary" htmlType="submit" style={{ marginTop: "10px" }}>
+        <ButtonWrapper type="primary" htmlType="submit">
           삭제
-        </Button>
+        </ButtonWrapper>
       </div>
     </Form>
   );

@@ -4,6 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { addGuestBook } from "../reducers/guestBook";
 import useInput from "../hooks/useInput";
+import styled from "styled-components";
+
+const FormWrapper = styled(Form)`
+  padding: 10px;
+  border-radius: 10px;
+  background: white;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+`;
 
 const GuestBookForm = () => {
   const [content, onChangeContent, setContent] = useInput("");
@@ -26,14 +39,7 @@ const GuestBookForm = () => {
   }, [content, name, password]);
 
   return (
-    <Form
-      onFinish={onSubmitForn}
-      style={{
-        padding: "10px",
-        borderRadius: "10px",
-        background: "white",
-      }}
-    >
+    <FormWrapper onFinish={onSubmitForn}>
       <label htmlFor="guest-book">방명록</label>
       <Input.TextArea
         rows={4}
@@ -62,18 +68,12 @@ const GuestBookForm = () => {
           required
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginTop: "5px",
-        }}
-      >
+      <ButtonWrapper>
         <Button type="primary" htmlType="submit">
           등록
         </Button>
-      </div>
-    </Form>
+      </ButtonWrapper>
+    </FormWrapper>
   );
 };
 
