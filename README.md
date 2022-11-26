@@ -11,7 +11,6 @@
 # 3. 트러블 슈팅
 <details>
   <summary>styled-components가 제대로 적용되지 않는 문제 발견</summary>
-  <div>
     
     Next.js는 Server Side Rendering으로 페이지를 그려준다.
     이는 서버에서 HTML을 먼저 보내주고 javascript를 적용한다.
@@ -23,11 +22,8 @@
   
     renderPage 함수를 사용해 _document.js에서 CSS-in-JS를 불러와 문제를 해결할 수 있었다.
     
-  </div>
-  </details>
+</details>
 
 <details>
   <summary>방명록 패스워드 한글 입력 시 영어로 입력되지 않고 첫 문자가 한글로 저장되는 문제 발견</summary>
-  <div>
-  </div>
 </details>
