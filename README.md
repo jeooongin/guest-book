@@ -17,11 +17,8 @@ addGuestBook 비동기 액션 생성
 
 # 트러블 슈팅
 <details>
-<summary>패스워드 입력값 문제</summary>
-<div markdown="1">
-
-- Webpack-dev-server 버전을 3.0.0으로 다운그레이드로 해결
-- `$ npm install —save-dev webpack-dev-server@3.0.0`
-
-</div>
+  <summary>패스워드 입력값 문제</summary>
+  <div>
+  
+  </div>
 </details>
