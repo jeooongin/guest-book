@@ -5,8 +5,9 @@
 * React
 * Next.js
 * Redux Toolkit
-* CSS
 * HTML
+* CSS
+* Ant Design
 
 # 3. 트러블 슈팅
 <details>
